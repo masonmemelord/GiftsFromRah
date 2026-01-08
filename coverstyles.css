@@ -1,6 +1,6 @@
 /* --- Global Styles --- */
 * {
-  box-sizing: border-box; /* Ensures padding doesn't break your widths */
+  box-sizing: border-box;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
 
 h1 {
   color: #333;
-  font-size: clamp(30px, 5vw, 50px); /* Scales font size based on screen width */
+  font-size: clamp(30px, 5vw, 50px);
 }
 
 h2 {
@@ -23,12 +23,11 @@ h2 {
 /* --- Navigation --- */
 .navbar {
   display: flex;
-  flex-wrap: wrap; /* Allows links to wrap to a new line on tiny screens */
+  flex-wrap: wrap;
   font-size: 20px;
   border-radius: 10px;
   justify-content: flex-start;
   align-items: center;
-  color: #333;
 }
 
 .navbar a {
@@ -38,11 +37,16 @@ h2 {
   text-decoration: none;
 }
 
-/* --- Main Sections (Flexbox) --- */
+.navbar a:hover {
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+
 .main-section, 
 .altcontent {
   display: flex;
-  flex-direction: row; /* Default: side-by-side */
+  flex-direction: row; 
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -52,21 +56,29 @@ h2 {
 }
 
 .altcontent {
-  background: linear-gradient(to right, #393939, #000);
+  background: linear-gradient(to right, #393939, #0e0e0e 70%);
+  color: white;
 }
 
-.content, .altcontent div:first-child {
-  flex: 1;
+.altcontent h1, .altcontent p {
+  color: white;
+}
+
+/* Children of sections */
+.content, .alt-text {
+  flex: 1.5; /* Gives text slightly more room than the image */
 }
 
 /* --- Images --- */
 .CoverPage, 
 .incenseimg {
   flex: 1;
-  max-width: 100%; /* Keeps image inside its container */
-  height: auto;    /* Maintains aspect ratio */
+  max-width: 60%; /* Image takes up half the width on desktop */
+  height: auto;
   border-radius: 10px;
 }
+
+
 
 .incenseimg {
   mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
@@ -74,21 +86,25 @@ h2 {
 }
 
 /* --- THE RESPONSIVE MAGIC --- */
-/* When the screen is 768px wide or less (Tablets & Phones) */
 @media (max-width: 768px) {
   .main-section, 
   .altcontent {
-    flex-direction: column; /* Stacks image and text vertically */
+    flex-direction: column; /* Stacks image under text */
     text-align: center;
+    padding: 20px;
+  }
+
+  .CoverPage, 
+  .incenseimg {
+    max-width: 100%; /* Image takes full width on mobile */
   }
 
   .altcontent h1, 
   .altcontent p {
-    padding-left: 0; /* Centers text for mobile */
+    padding-left: 0;
   }
 
   .incenseimg {
-    /* Removes the fade-out mask on mobile so the image is clear */
     mask-image: none;
     -webkit-mask-image: none;
   }
